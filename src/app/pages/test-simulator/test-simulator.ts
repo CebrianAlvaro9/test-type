@@ -25,17 +25,16 @@ export class TestSimulator {
 
   filteredTests = linkedSignal(() => {
     const type = this.testType();
-    const test = this.test.value() ?? [];
+    const tests = this.test.value() ?? [];
 
-    if (type === 'exam') {
-      return test.filter((t) => t.type_exam);
-    }
+    const filtered =
+      type === 'exam'
+        ? tests.filter((t) => t.type_exam)
+        : type === 'moodle'
+        ? tests.filter((t) => !t.type_exam)
+        : tests;
 
-    if (type === 'moodle') {
-      return test.filter((t) => !t.type_exam);
-    }
-
-    return test;
+    return [...filtered].sort(() => Math.random() - 0.5);
   });
 
   questionNumber = signal(0);
@@ -59,7 +58,6 @@ export class TestSimulator {
     });
   }
 
-  
   currentQuestionAnswer = computed(() => {
     return this.userAnswers().find((a) => a.id === this.questionSelected().id)?.answer;
   });
@@ -82,7 +80,7 @@ export class TestSimulator {
   successPercentage = computed(() => {
     const answers = this.userAnswers();
     if (answers.length === 0) return 0;
-    
+
     return Math.round((this.correctQuestionsCount() / answers.length) * 100);
   });
 
@@ -114,7 +112,9 @@ export class TestSimulator {
 
   repetirErroneas() {
     this.questionNumber.set(0);
-    this.filteredTests.set(this.filteredTests().filter((t) => t.query.correct !== this.currentQuestionAnswer()));
+    this.filteredTests.set(
+      this.filteredTests().filter((t) => t.query.correct !== this.currentQuestionAnswer())
+    );
     this.userAnswers.set([]);
   }
 }
