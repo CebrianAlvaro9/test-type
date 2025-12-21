@@ -6,7 +6,6 @@ import { SupabaseService } from '../../services/supabase';
   selector: 'app-subject-selector',
   imports: [],
   templateUrl: './subject-selector.html',
-  styleUrl: './subject-selector.css',
 })
 export class SubjectSelector {
   private router = inject(Router);

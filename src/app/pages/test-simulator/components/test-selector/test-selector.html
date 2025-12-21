@@ -1,0 +1,74 @@
+<div class="text-center mb-8">
+  <h2 class="text-3xl font-extrabold text-gray-900">Configuración del Test</h2>
+  <p class="mt-2 text-sm text-gray-600">Elige el origen de las preguntas</p>
+</div>
+
+<div class="space-y-4">
+  @for (option of testTypeOptions; track option.value) {
+  <button
+    (click)="setType(option.value)"
+    class="group relative w-full flex items-center justify-between p-6 bg-white border-2 border-gray-200 rounded-xl hover:border-indigo-500 hover:shadow-lg transition-all duration-200"
+  >
+    <div class="flex items-center">
+      <span
+        class="h-10 w-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-200"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+          />
+        </svg>
+      </span>
+      <div class="ml-4 text-left">
+        <h3 class="text-lg font-medium text-gray-900 group-hover:text-indigo-600 transition-colors">
+          {{ option.label }}
+        </h3>
+      </div>
+    </div>
+    <div class="ml-4">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5 text-gray-400 group-hover:text-indigo-500 transition-colors"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </div>
+  </button>
+  }
+</div>
+
+<div class="flex justify-center mt-6">
+  <a
+    [routerLink]="['/']"
+    class="flex items-center text-gray-500 hover:text-gray-900 transition-colors font-medium"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-5 w-5 mr-2"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+        clip-rule="evenodd"
+      />
+    </svg>
+    Volver a elegir asignatura
+  </a>
+</div>
