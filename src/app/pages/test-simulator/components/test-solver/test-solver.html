@@ -104,7 +104,7 @@
             </button>
           }
           @else if (filteredTests().length !== correctQuestionsCount()) {
-            <button (click)="repetirErroneas()" class="bg-indigo-600 text-white px-8 py-3 rounded-xl font-semibold shadow-lg shadow-indigo-200 hover:bg-indigo-700 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200">
+            <button (click)="repeatFails()" class="bg-indigo-600 text-white px-8 py-3 rounded-xl font-semibold shadow-lg shadow-indigo-200 hover:bg-indigo-700 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200">
               Repetir Fails
             </button>
           }

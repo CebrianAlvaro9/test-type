@@ -29,8 +29,8 @@ export class TestSolver {
       type === 'exam'
         ? tests.filter((t) => t.type_exam)
         : type === 'moodle'
-        ? tests.filter((t) => !t.type_exam)
-        : tests;
+          ? tests.filter((t) => !t.type_exam)
+          : tests;
 
     return [...filtered].sort(() => Math.random() - 0.5);
   });
@@ -72,15 +72,18 @@ export class TestSolver {
     });
   }
 
-  goBack() {
-    this.typeReset.emit();
+  repeatFails() {
+    this.questionNumber.set(0);
+    this.filteredTests.update((questions) => {
+      return questions.filter((q) => {
+        const userAnswer = this.userAnswers().find((ans) => ans.id === q.id);
+        return !userAnswer || userAnswer.answer !== q.query.correct;
+      });
+    });
+    this.userAnswers.set([]);
   }
 
-  repetirErroneas() {
-    this.questionNumber.set(0);
-    this.filteredTests.set(
-      this.filteredTests().filter((t) => t.query.correct !== this.currentQuestionAnswer())
-    );
-    this.userAnswers.set([]);
+  goBack() {
+    this.typeReset.emit();
   }
 }
